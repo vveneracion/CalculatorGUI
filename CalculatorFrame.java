@@ -1,18 +1,6 @@
 import java.util.*;
-import javax.swing.JFrame;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.Box;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.JComponent;
-import javax.swing.SwingConstants;
-import javax.swing.JScrollPane;
-import java.awt.BorderLayout;
+import javax.swing.*;
 import java.awt.*;
-import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.text.DecimalFormat;
@@ -25,14 +13,14 @@ public class CalculatorFrame extends JFrame{ //implements ActionListener{
     private JPanel southPanel = new JPanel();
 
     private static final int FRAME_WIDTH = 300;
-    private static final int FRAME_HEIGHT = 200;
+    private static final int FRAME_HEIGHT = 250;
 
     private static JButton[] numButtons = new JButton[4];
 
-    private static final int CALCULATE_ROWS = 20;
-    private static final int CALCULATE_COLUMNS = 10;
+    private static final int CALCULATE_ROWS = 4;
+    private static final int CALCULATE_COLUMNS = 20;
 
-    private JTextField calculation;
+    private JTextArea calculation;
 
     public CalculatorFrame(){
 
@@ -54,8 +42,9 @@ public class CalculatorFrame extends JFrame{ //implements ActionListener{
 
         //northPanel.setLayout(new BorderLayout());
 
-        calculation = new JTextField(CALCULATE_ROWS);
-        calculation.setHorizontalAlignment(SwingConstants.RIGHT);
+        calculation = new JTextArea(CALCULATE_ROWS, CALCULATE_COLUMNS);
+        //calculation.setHorizontalAlignment(SwingConstants.RIGHT);
+        calculation.setEditable(false);
         northPanel.add(calculation, BorderLayout.CENTER);
 
     }
