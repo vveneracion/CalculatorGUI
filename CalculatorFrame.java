@@ -1,14 +1,17 @@
 import java.util.*;
 import javax.swing.JFrame;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.Box;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JComponent;
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import java.awt.BorderLayout;
+import java.awt.*;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -22,11 +25,11 @@ public class CalculatorFrame extends JFrame{ //implements ActionListener{
     private JPanel southPanel = new JPanel();
 
     private static final int FRAME_WIDTH = 300;
-    private static final int FRAME_HEIGHT = 500;
+    private static final int FRAME_HEIGHT = 200;
 
     private static JButton[] numButtons = new JButton[4];
 
-    private static final int CALCULATE_ROWS = 13;
+    private static final int CALCULATE_ROWS = 20;
     private static final int CALCULATE_COLUMNS = 10;
 
     private JTextField calculation;
@@ -59,24 +62,19 @@ public class CalculatorFrame extends JFrame{ //implements ActionListener{
 
     public void createSouthPanel(){
 
-        //southPanel.setLayout(new BorderLayout());
+        southPanel.setLayout(new BoxLayout(southPanel, BoxLayout.Y_AXIS));
 
         JPanel first = createFirstRow();
         JPanel second = createSecondRow();
         JPanel third = createThirdRow();
         JPanel fourth = createFourthRow();
+        JPanel fifth = createFifthRow();
 
-        JPanel buttons = new JPanel(new GridLayout(1, 4, 10, 0));
-
-        JButton clear = new JButton("C");
-
-        JButton multiply = new JButton("*");
-        JButton divide = new JButton("/");
-
-        JButton dot = new JButton(".");
-        JButton equals = new JButton("=");
-
-        southPanel.add(buttons, BorderLayout.CENTER);
+        southPanel.add(first, Box.createVerticalStrut(10));
+        southPanel.add(second, Box.createVerticalStrut(10));
+        southPanel.add(third, Box.createVerticalStrut(10));
+        southPanel.add(fourth, Box.createVerticalStrut(10));
+        southPanel.add(fifth, Box.createVerticalStrut(10));
                     
 
     }
@@ -85,7 +83,9 @@ public class CalculatorFrame extends JFrame{ //implements ActionListener{
 
         JPanel firstRow = new JPanel(new GridLayout(1, 4, 10, 0));
         for(int i = 0; i < numButtons.length; i++){
-            numButtons[i] = new JButton("" + i+1);
+            int num = i+1;
+            String str = String.valueOf(num);
+            numButtons[i] = new JButton(str);
             firstRow.add(numButtons[i]);
         }
 
@@ -97,7 +97,9 @@ public class CalculatorFrame extends JFrame{ //implements ActionListener{
 
         JPanel secondRow = new JPanel(new GridLayout(1, 4, 10, 0));
         for(int i = 0; i < numButtons.length; i++){
-            numButtons[i] = new JButton("" + i+5);
+            int num = i+5;
+            String str = String.valueOf(num);
+            numButtons[i] = new JButton(str);
             secondRow.add(numButtons[i]);
         }
 
@@ -119,5 +121,38 @@ public class CalculatorFrame extends JFrame{ //implements ActionListener{
         thirdRow.add(plus);
         thirdRow.add(minus);
         
+        return thirdRow;
+
+    }
+
+    public JPanel createFourthRow(){
+
+        JPanel fourthRow = new JPanel(new GridLayout(1, 4, 10, 0));
+
+        JButton multiply = new JButton("*");
+        JButton divide = new JButton("/");
+        JButton posneg = new JButton("+/-");
+        JButton dot = new JButton(".");
+
+        fourthRow.add(multiply);
+        fourthRow.add(divide);
+        fourthRow.add(posneg);
+        fourthRow.add(dot);
+
+        return fourthRow;
+
+    }
+
+    public JPanel createFifthRow(){
+
+        JPanel fifthRow = new JPanel(new GridLayout(1, 4, 10, 0));
+
+        JButton clear = new JButton("C");
+        JButton equals = new JButton("=");
+
+        fifthRow.add(clear);
+        fifthRow.add(equals);
+
+        return fifthRow;
     }
 }
