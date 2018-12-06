@@ -75,10 +75,73 @@ public class CalculatorFrame extends JFrame{ //implements ActionListener{
             int num = i+1;
             String str = String.valueOf(num);
             numButtons[i] = new JButton(str);
+            ActionListener numListener = new addNumButtonListener(calculation);
+            numButtons[i].addActionListener(numListener);
             firstRow.add(numButtons[i]);
         }
 
         return firstRow;
+
+    }
+
+    class addNumButtonListener implements ActionListener{
+
+        private JTextArea screen;
+        private String temp;
+
+        public addNumButtonListener(JTextArea calculation){
+
+            this.screen = calculation;
+            this.temp = "";
+
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent event){
+
+            if(event.getActionCommand().equals("1")){
+                temp = screen.getText() + "1";
+                screen.setText(temp);
+            }
+            else if(event.getActionCommand().equals("2")){
+                temp = screen.getText() + "2";
+                screen.setText(temp);
+            }
+            else if(event.getActionCommand().equals("3")){
+                temp = screen.getText() + "3";
+                screen.setText(temp);
+            }
+            else if(event.getActionCommand().equals("4")){
+                temp = screen.getText() + "4";
+                screen.setText(temp);
+            }
+            else if(event.getActionCommand().equals("5")){
+                temp = screen.getText() + "5";
+                screen.setText(temp);
+            }
+            else if(event.getActionCommand().equals("6")){
+                temp = screen.getText() + "6";
+                screen.setText(temp);
+            }
+            else if(event.getActionCommand().equals("7")){
+                temp = screen.getText() + "7";
+                screen.setText(temp);
+            }
+            else if(event.getActionCommand().equals("8")){
+                temp = screen.getText() + "8";
+                screen.setText(temp);
+            }
+            else if(event.getActionCommand().equals("9")){
+                temp = screen.getText() + "9";
+                screen.setText(temp);
+            }
+            else if(event.getActionCommand().equals("0")){
+                temp = screen.getText() + "0";
+                screen.setText(temp);
+            }
+
+        }
+
 
     }
 
@@ -89,6 +152,8 @@ public class CalculatorFrame extends JFrame{ //implements ActionListener{
             int num = i+5;
             String str = String.valueOf(num);
             numButtons[i] = new JButton(str);
+            ActionListener numListener = new addNumButtonListener(calculation);
+            numButtons[i].addActionListener(numListener);
             secondRow.add(numButtons[i]);
         }
 
@@ -101,7 +166,10 @@ public class CalculatorFrame extends JFrame{ //implements ActionListener{
         JPanel thirdRow = new JPanel(new GridLayout(1, 4, 10, 0));
 
         JButton nine = new JButton("9");
+        ActionListener numListener = new addNumButtonListener(calculation);
+        nine.addActionListener(numListener);
         JButton zero = new JButton("0");
+        zero.addActionListener(numListener);
         JButton plus = new JButton("+");
         JButton minus = new JButton("-");
 
@@ -137,6 +205,8 @@ public class CalculatorFrame extends JFrame{ //implements ActionListener{
         JPanel fifthRow = new JPanel(new GridLayout(1, 4, 10, 0));
 
         JButton clear = new JButton("C");
+        ActionListener clearListener = new addClearButtonListener(calculation);
+        clear.addActionListener(clearListener);
         JButton equals = new JButton("=");
 
         fifthRow.add(clear);
@@ -144,4 +214,23 @@ public class CalculatorFrame extends JFrame{ //implements ActionListener{
 
         return fifthRow;
     }
+
+    class addClearButtonListener implements ActionListener{
+
+        private JTextArea screen;
+
+        public addClearButtonListener(JTextArea calculate){
+
+            this.screen = calculate;
+
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent event){
+
+            screen.setText("");
+
+        }
+    }
+
 }
